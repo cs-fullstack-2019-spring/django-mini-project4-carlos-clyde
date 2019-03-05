@@ -21,7 +21,7 @@ class NewUserForm(ModelForm):
         return cleaned_data
 
 
-    class NewGameForm(ModelForm):
+class NewGameForm(ModelForm):
         class Meta:
             model = GameModel
             exclude = [" game_key"]
