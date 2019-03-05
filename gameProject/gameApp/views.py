@@ -35,6 +35,8 @@ def newgameform(request):
         'game_form': form
     }
 
+
+
     if request.method == "POST":
 
         return render(request, "gameApp/index.html", context)
@@ -43,7 +45,10 @@ def newgameform(request):
 
 
 def login(request):
-    return render(request, 'gameApp/login.html')
+
+    return render(request, 'registration/login.html')
+
+
 
 
 
@@ -67,6 +72,5 @@ def deletegame(request, id):
         return redirect('index')
 
     return render(request, 'gameApp/index.html', {'selecteduser':game_key})
-
 
 
