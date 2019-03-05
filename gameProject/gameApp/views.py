@@ -48,6 +48,9 @@ def login(request):
 
 
 
+
+
+
 def editgame(request, id):
     game_key= get_object_or_404(UserModel, pk = id)
     edit_form = NewUserForm(request.POST or None, instance=game_key)
