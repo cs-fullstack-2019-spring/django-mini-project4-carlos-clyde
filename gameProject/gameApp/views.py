@@ -6,10 +6,10 @@ from django.contrib.auth.decorators import login_required
 # This view handles the landing page
 
 from .models import UserModel, GameModel
-
+# this function was used as a tester to render the index page
 def index(request):
     return render(request, 'gameApp/index.html',)
-
+#
 def createuser(request):
     new_form = NewUserForm(request.POST or None)
     if new_form.is_valid():
