@@ -5,9 +5,9 @@ from .forms import NewUserForm
 from .models import UserModel, GameModel
 
 def index(request):
-    return render((request, 'gameApp/index.html', {'userform': new_form}))
+    return render(request, 'gameApp/index.html',)
 
-def user(request):
+def createuser(request):
     new_form = NewUserForm(request.POST or None)
     if new_form.is_valid():
         new_form.save()
