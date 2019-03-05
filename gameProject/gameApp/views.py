@@ -6,15 +6,20 @@ from django.contrib.auth.decorators import login_required
 # This view handles the landing page
 
 from .models import UserModel, GameModel
-
+# this function was used as a tester to render the index page
 def index(request):
     return render(request, 'gameApp/index.html',)
+#function that creates a user
+
 
 def newUser(request):
+    # gets newUserForom and assigns it to form if the data is valid it will be posted to the database
     form = NewUserForm(request.POST or None)
+    # passes in form and assigns to context new_form
     context = {
         "new_form": form
     }
+
 
 
 def newgame(request):
@@ -23,16 +28,15 @@ def newgame(request):
         "new_form": form
     }
 
-
-
+    # if posted create a user name and password
 
     if request.method == "POST":
-
+        # user created
         User.objects.create_user(request.POST["username"], "", request.POST["password1"])
         return render(request, "gameApp/createuser.html", context)
 
     return render(request, 'gameApp/createuser.html', context)
-
+# gets the Game Form and assigns it to game_form if the data is valid it will be posted to the database
 def newgameform(request):
     form = GameModel(request.POST or None)
     context = {
@@ -40,6 +44,7 @@ def newgameform(request):
     }
 
 
+    # if the request method equals a POST the index page is rendered
 
     if request.method == "POST":
 
@@ -47,7 +52,7 @@ def newgameform(request):
 
     return render(request, 'gameApp/index.html', context)
 
-
+#when login link is clicked is directs user to the login html  page
 def login(request):
 
     return render(request, 'registration/login.html')
