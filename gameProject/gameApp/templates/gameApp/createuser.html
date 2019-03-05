@@ -5,7 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-<form  method="post">
+<h1>CreateUser</h1>
+<form method="post">
     {% csrf_token %}
     {{ new_form.as_p }}
     <button>Submit</button>
