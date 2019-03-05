@@ -5,11 +5,14 @@
     <title>Title</title>
 </head>
 <body>
+<link rel="stylesheet"href="color.css">
+
 <h1>Welcome </h1>
 <br>
 {% block content %}
 <a href="{% url 'newUser' %}">createuser</a>
 <a href="{% url 'login' %}">login here</a>
+<a href="{% url 'newgame' %}">newgame</a>
 
 
 {% endblock content %}

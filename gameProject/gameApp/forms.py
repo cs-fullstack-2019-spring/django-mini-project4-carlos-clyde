@@ -4,6 +4,7 @@ from django.forms import ModelForm
 from .models import UserModel, GameModel
 
 
+
 class NewUserForm(ModelForm):
     class Meta:
         model = UserModel
@@ -21,7 +22,7 @@ class NewUserForm(ModelForm):
         return cleaned_data
 
 
-    class NewGameForm(ModelForm):
+class NewGameForm(ModelForm):
         class Meta:
             model = GameModel
             exclude = [" game_key"]

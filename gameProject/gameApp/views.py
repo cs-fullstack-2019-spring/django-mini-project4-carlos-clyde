@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect, get_object_or_404
-from .forms import  NewUserForm
+from .forms import  NewUserForm,NewGameForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -10,17 +10,21 @@ from .models import UserModel, GameModel
 def index(request):
     return render(request, 'gameApp/index.html',)
 
-def createuser(request):
-    new_form = NewUserForm(request.POST or None)
-    if new_form.is_valid():
-        new_form.save()
-        return redirect('index')
-
 def newUser(request):
     form = NewUserForm(request.POST or None)
     context = {
         "new_form": form
     }
+
+
+def newgame(request):
+    form = NewGameForm(request.POST or None)
+    context = {
+        "new_form": form
+    }
+
+
+
 
     if request.method == "POST":
 
@@ -47,11 +51,6 @@ def newgameform(request):
 def login(request):
 
     return render(request, 'registration/login.html')
-
-
-
-
-
 
 
 
