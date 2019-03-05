@@ -4,7 +4,7 @@ from django.forms import ModelForm
 from .models import UserModel
 
 
-class UserForm(ModelForm):
+class NewUserForm(ModelForm):
     class Meta:
         model = UserModel
-        fields = ["username", "password1", 'password2', 'dateaccountcreated', 'rank', ]
+        fields = '__all__'
