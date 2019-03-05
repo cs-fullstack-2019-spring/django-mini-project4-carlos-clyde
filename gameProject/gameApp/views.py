@@ -25,7 +25,7 @@ def newUser(request):
     if request.method == "POST":
 
         User.objects.create_user(request.POST["username"], "", request.POST["password1"])
-        return render(request, "gameApp/creatuser.html", context)
+        return render(request, "gameApp/createuser.html", context)
 
     return render(request, 'gameApp/createuser.html', context)
 
@@ -35,11 +35,22 @@ def newgameform(request):
         'game_form': form
     }
 
+
+
     if request.method == "POST":
 
         return render(request, "gameApp/index.html", context)
 
     return render(request, 'gameApp/index.html', context)
+
+
+def login(request):
+
+    return render(request, 'registration/login.html')
+
+
+
+
 
 
 
@@ -61,6 +72,5 @@ def deletegame(request, id):
         return redirect('index')
 
     return render(request, 'gameApp/index.html', {'selecteduser':game_key})
-
 
 
