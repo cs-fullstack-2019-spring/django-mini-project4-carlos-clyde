@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import UserModel,GameModel
 from django.contrib.auth.models import User
+from .forms import NewUserForm
+
 
 from django.shortcuts import render, redirect, get_object_or_404
 
@@ -44,3 +46,7 @@ def deleteuser(request, id):
 
 def creatuser(request):
     return HttpResponse('hello, clyde')
+
+def Index(request):
+    return render(request, "gameApp/Index.html")
+
