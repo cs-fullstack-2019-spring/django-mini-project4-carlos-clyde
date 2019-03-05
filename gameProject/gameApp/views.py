@@ -1,34 +1,45 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render
+from .forms import  NewUserForm
+from django.contrib.auth.models import User
 
 # This view handles the landing page
-from .forms import NewUserForm
+
 from .models import UserModel, GameModel
 
 def index(request):
     return render(request, 'gameApp/index.html',)
 
-def createuser(request):
-    new_form = NewUserForm(request.POST or None)
-    if new_form.is_valid():
-        new_form.save()
-        return redirect('index')
 
-    return render(request, 'gameApp/index.html', {'userform': new_form})
+def newUser(request):
+    form = NewUserForm(request.POST or None)
+    context = {
+        "new_form": form
+    }
 
-def edituser(request, id):
-    user= get_object_or_404(UserModel, pk = id)
-    edit_form = NewUserForm(request.POST or None, instance=user)
-    if edit_form.is_valid():
-        edit_form.save()
-        return redirect('index')
+    if request.method == "POST":
 
-    return render(request, 'gameApp/index.html', {'userform': edit_form})
+        User.objects.create_user(request.POST["username"], "", request.POST["password1"])
+        return render(request, "gameApp/creatuser.html", context)
 
-def deleteuser(request, id):
-    user = get_object_or_404(UserModel, pk=id)
-    if request.method == 'POST':
-        user.delete()
-        return redirect('index')
+    return render(request, 'gameApp/createuser.html', context)
 
-    return render(request, 'gameApp/index.html', {'selecteduser':user})
+#
+# def edituser(request, id):
+#     user= get_object_or_404(UserModel, pk = id)
+#     edit_form = NewUserForm(request.POST or None, instance=user)
+#     if edit_form.is_valid():
+#         edit_form.save()
+#         return redirect('index')
+#
+#     return render(request, 'gameApp/index.html', {'form': edit_form})
+#
+# def deleteuser(request, id):
+#     user = get_object_or_404(UserModel, pk=id)
+#     if request.method == 'POST':
+#         user.delete()
+#         return redirect('index')
+#
+#     return render(request, 'gameApp/index.html', {'selecteduser':user})
+#
+#
 
