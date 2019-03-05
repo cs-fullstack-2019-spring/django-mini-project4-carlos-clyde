@@ -1,22 +1,13 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from .models import UserModel,GameModel
+from django.shortcuts import render,redirect, get_object_or_404
+from .forms import  NewUserForm
 from django.contrib.auth.models import User
-from .forms import NewUserForm
-
-
-from django.shortcuts import render, redirect, get_object_or_404
-
+from django.contrib.auth.decorators import login_required
 
 # This view handles the landing page
-from .forms import NewUserForm
+
 from .models import UserModel, GameModel
 
 def index(request):
-
-    return HttpResponse("Hello, carlos")
-    return render(request,'gameApp/index')
-
     return render(request, 'gameApp/index.html',)
 
 def createuser(request):
@@ -25,28 +16,51 @@ def createuser(request):
         new_form.save()
         return redirect('index')
 
-    return render(request, 'gameApp/index.html', {'userform': new_form})
+def newUser(request):
+    form = NewUserForm(request.POST or None)
+    context = {
+        "new_form": form
+    }
 
-def edituser(request, id):
-    user= get_object_or_404(UserModel, pk = id)
-    edit_form = NewUserForm(request.POST or None, instance=user)
+    if request.method == "POST":
+
+        User.objects.create_user(request.POST["username"], "", request.POST["password1"])
+        return render(request, "gameApp/creatuser.html", context)
+
+    return render(request, 'gameApp/createuser.html', context)
+
+def newgameform(request):
+    form = GameModel(request.POST or None)
+    context = {
+        'game_form': form
+    }
+
+    if request.method == "POST":
+
+        return render(request, "gameApp/index.html", context)
+
+    return render(request, 'gameApp/index.html', context)
+
+
+
+
+
+def editgame(request, id):
+    game_key= get_object_or_404(UserModel, pk = id)
+    edit_form = NewUserForm(request.POST or None, instance=game_key)
     if edit_form.is_valid():
         edit_form.save()
         return redirect('index')
 
-    return render(request, 'gameApp/index.html', {'userform': edit_form})
+    return render(request, 'gameApp/index.html', {'form': edit_form})
 
-def deleteuser(request, id):
-    user = get_object_or_404(UserModel, pk=id)
+def deletegame(request, id):
+    game_key = get_object_or_404(UserModel, pk=id)
     if request.method == 'POST':
-        user.delete()
+        game_key.delete()
         return redirect('index')
 
-    return render(request, 'gameApp/index.html', {'selecteduser':user})
+    return render(request, 'gameApp/index.html', {'selecteduser':game_key})
 
-def creatuser(request):
-    return HttpResponse('hello, clyde')
 
-def Index(request):
-    return render(request, "gameApp/Index.html")
 
