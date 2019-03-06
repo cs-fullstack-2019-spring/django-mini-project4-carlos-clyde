@@ -12,7 +12,7 @@ def index(request):
 #function that creates a user
 
 
-def newUser(request):
+def newuser(request):
     # gets newUserForom and assigns it to form if the data is valid it will be posted to the database
     form = NewUserForm(request.POST or None)
     # passes in form and assigns to context new_form
@@ -21,7 +21,7 @@ def newUser(request):
     }
 
 
-
+ # the game url form
 def newgame(request):
     form = NewGameForm(request.POST or None)
     context = {
