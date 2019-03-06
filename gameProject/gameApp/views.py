@@ -59,10 +59,6 @@ def newgameform(request):
 #when login link is clicked is directs user to the login html  page
 def login(request):
 
-
-    context = {
-        "newform" : newform
-    }
     return render(request, 'registration/login.html')
 
 
