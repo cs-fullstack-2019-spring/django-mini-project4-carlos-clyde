@@ -22,7 +22,7 @@ def newuser(request):
     if request.method == "POST":
         # user created
         User.objects.create_user(request.POST["username"], "", request.POST["password1"])
-        return render(request, "gameApp/index.html", context)
+        return render(request, "gameApp/addnewgame.html", context)
     return render(request, 'gameApp/createuser.html', context)
 
  # the game url form
@@ -59,7 +59,11 @@ def newgameform(request):
 #when login link is clicked is directs user to the login html  page
 def login(request):
 
-    return render(request, 'registration/login.html')
+    context = {
+        'login': login
+    }
+
+    return render(request, 'registration/login.html', context)
 
 
 

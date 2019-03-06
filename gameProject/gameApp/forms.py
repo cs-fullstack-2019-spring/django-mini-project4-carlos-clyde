@@ -27,3 +27,7 @@ class NewGameForm(ModelForm):
             model = GameModel
             exclude = [" game_key"]
             fields = '__all__'
+
+class loginForm(ModelForm):
+        class Meta:
+
