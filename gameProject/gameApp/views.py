@@ -19,7 +19,11 @@ def newuser(request):
     context = {
         "new_form": form
     }
-
+    if request.method == "POST":
+        # user created
+        User.objects.create_user(request.POST["username"], "", request.POST["password1"])
+        return render(request, "gameApp/index.html", context)
+    return render(request, 'gameApp/createuser.html', context)
 
  # the game url form
 def newgame(request):
@@ -32,10 +36,10 @@ def newgame(request):
 
     if request.method == "POST":
         # user created
-        User.objects.create_user(request.POST["username"], "", request.POST["password1"])
-        return render(request, "gameApp/createuser.html", context)
+        User.objects.create_user(request.POST["name"], "", request.POST["developer"])
+        return render(request, "gameApp/addnewgame.html", context)
 
-    return render(request, 'gameApp/createuser.html', context)
+    return render(request, 'gameApp/addnewgame.html', context)
 # gets the Game Form and assigns it to game_form if the data is valid it will be posted to the database
 def newgameform(request):
     form = GameModel(request.POST or None)
