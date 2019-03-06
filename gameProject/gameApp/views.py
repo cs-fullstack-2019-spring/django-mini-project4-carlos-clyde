@@ -47,12 +47,11 @@ def newgameform(request):
         'game_form': form
     }
 
-
     # if the request method equals a POST the index page is rendered
 
     if request.method == "POST":
-
-        return render(request, "gameApp/index.html", context)
+    #return the post back to the addneewgame or send them
+        return render(request, 'gameApp/addnewgame.html', context)
 
     return render(request, 'gameApp/index.html', context)
 
@@ -70,6 +69,7 @@ def login(request):
 
 
 
+# edit the game to add different things
 def editgame(request, id):
     game_key= get_object_or_404(UserModel, pk = id)
     edit_form = NewUserForm(request.POST or None, instance=game_key)
@@ -79,6 +79,7 @@ def editgame(request, id):
 
     return render(request, 'gameApp/index.html', {'form': edit_form})
 
+# for the user to delete the game
 def deletegame(request, id):
     game_key = get_object_or_404(UserModel, pk=id)
     if request.method == 'POST':
