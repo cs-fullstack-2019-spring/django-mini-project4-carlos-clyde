@@ -9,7 +9,8 @@ class NewUserForm(ModelForm):
     class Meta:
         model = UserModel
         exclude = [" user_key"]
-        fields = '__all__'
+
+
 
 
     def passwordCheck(self):

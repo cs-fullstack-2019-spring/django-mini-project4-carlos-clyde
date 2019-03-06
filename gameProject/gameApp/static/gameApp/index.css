@@ -6,10 +6,23 @@ body {
     margin-top: 5%;
     margin-left: 10%;
 
-;
-
     padding: 0;
     left: 0;
     top: 0;
     font-size: 100%;
+    background-color: #476665;
+    text-shadow: #b20497;
+
+}
+h1{
+    color: orange;
+}
+
+.block{
+    text-decoration-color: orange;
+}
+
+button{
+    background-color: #88ff7c;
+    text-decoration-color: #051923;
 }
