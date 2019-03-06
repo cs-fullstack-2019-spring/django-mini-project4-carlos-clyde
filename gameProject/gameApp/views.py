@@ -65,6 +65,8 @@ def login(request):
 
     return render(request, 'registration/login.html', context)
 
+    return render(request, 'registration/login.html')
+
 
 
 
