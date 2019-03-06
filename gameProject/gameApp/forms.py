@@ -27,3 +27,6 @@ class NewGameForm(ModelForm):
             model = GameModel
             exclude = [" game_key"]
             fields = '__all__'
+
+
+
