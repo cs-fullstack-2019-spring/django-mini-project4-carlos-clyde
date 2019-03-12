@@ -19,9 +19,11 @@
 <h1>Welcome </h1>
 <br>
 {% block content %}
-<button><a href="{% url 'newuser' %}">createuser</a></button>
-<button><a href="{% url 'login' %}">login here</a></button>
+{# <button><a href="{% url 'newuser' %}">createuser</a></button> #}
+{# <button><a href="{% url 'login' %}">login here</a></button> #}
 
+<a href="{% url 'newuser' %}">createuser</a><br>
+<a href="{% url 'login' %}">login here</a>
 
 
 {% endblock content %}
